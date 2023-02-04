@@ -3,12 +3,6 @@
   margin: 0;
   box-sizing: border-box;
 }
-@font-face {
-  font-family: "arapix";
-  src: url("./fonts//Arapix.otf") format("truetype");
-  font-weight: normal;
-  font-size: normal;
-}
 
 .body {
   margin-top: 2.5cm;
@@ -59,7 +53,7 @@ div {
   align-items: center;
   flex-direction: column;
   font-size: 2rem;
-  font-family: arapix;
+  font-family: 'Marhey', cursive;
   cursor: pointer;
 }
 
