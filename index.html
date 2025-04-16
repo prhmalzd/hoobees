@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elara's Hobby Garden</title>
+  <style>
+    :root {
+      --primary: #f7d6e0;
+      --accent: #b877aa;
+      --text: #333;
+      --bg: #fff0f5;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      margin-bottom: 2rem;
+      color: var(--accent);
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1rem;
+      width: 90%;
+      max-width: 600px;
+    }
+
+    .nav-btn {
+      padding: 1rem;
+      background: var(--primary);
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    .nav-btn:hover {
+      background: var(--accent);
+      color: white;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <h1>Parham's Hobby Garden 🌸</h1>
+  <div class="button-grid">
+    <button class="nav-btn" onclick="goTo('movies')">🎬 Movies</button>
+    <button class="nav-btn" onclick="goTo('music')">🎧 Music</button>
+    <button class="nav-btn" onclick="goTo('books')">📚 Books</button>
+    <button class="nav-btn" onclick="goTo('mood')">🌙 Mood</button>
+    <button class="nav-btn" onclick="goTo('games')">🎮 Games</button>
+  </div>
+
+  <script>
+    function goTo(section) {
+      window.location.href = section + '.html';
+    }
+  </script>
+</body>
+</html>

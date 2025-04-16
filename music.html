@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Musics - Parham's Hobby Garden</title>
+  <style>
+    :root {
+      --primary: #f7d6e0;
+      --accent: #b877aa;
+      --text: #333;
+      --bg: #fff0f5;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 2rem;
+    }
+
+    h1 {
+      color: var(--accent);
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 500px;
+      margin: 0 auto 2rem auto;
+    }
+
+    input, textarea {
+      padding: 0.75rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .items-list {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .item {
+      padding: 1rem;
+      border-radius: 12px;
+      background: var(--primary);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    button {
+      background: var(--accent);
+      color: white;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    button:hover {
+      background: #964f94;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎬 My Music List</h1>
+  <div class="form-container">
+    <input type="text" id="musicname" placeholder="Music name" />
+    <textarea id="musicDesc" placeholder="Description"></textarea>
+    <input type="color" id="musicColor" />
+    <input type="number" id="musicRating" placeholder="Rating (1-5)" min="1" max="5" />
+    <button onclick="addmusic()">Add music</button>
+  </div>
+  <div class="items-list" id="musicList"></div>
+
+  <script>
+    const musicList = document.getElementById("musicList");
+
+    function loadMusics() {
+      const items = JSON.parse(localStorage.getItem("music") || "[]");
+      musicList.innerHTML = "";
+      items.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "item";
+        div.style.backgroundColor = item.color;
+        div.innerHTML = `<strong>${item.name}</strong><br/><em>${item.desc}</em><br/>⭐ ${item.rating}/5`;
+        musicList.appendChild(div);
+      });
+    }
+
+    function addmusic() {
+      const name = document.getElementById("musicname").value;
+      const desc = document.getElementById("musicDesc").value;
+      const color = document.getElementById("musicColor").value;
+      const rating = document.getElementById("musicRating").value;
+
+      if (!name || !desc || !color || !rating) return alert("Please fill all fields");
+
+      const newItem = { name, desc, color, rating };
+      const items = JSON.parse(localStorage.getItem("music") || "[]");
+      items.push(newItem);
+      localStorage.setItem("music", JSON.stringify(items));
+      loadMusics();
+
+      document.getElementById("musicname").value = "";
+      document.getElementById("musicDesc").value = "";
+      document.getElementById("musicColor").value = "#f7d6e0";
+      document.getElementById("musicRating").value = "";
+    }
+
+    window.onload = loadMusics;
+  </script>
+</body>
+</html>
