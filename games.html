@@ -69,6 +69,13 @@
     button:hover {
       background: #964f94;
     }
+    .item-number-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      padding-bottom: 40px;
+    }
   </style>
 </head>
 <body>
@@ -80,10 +87,12 @@
     <input type="number" id="gamesRating" placeholder="Rating (1-5)" min="1" max="5" />
     <button onclick="addgames()">Add games</button>
   </div>
+  <div class="item-number-container"><span id="item-number">1</span> / 14</div>
   <div class="items-list" id="gamesList"></div>
 
   <script>
     const gamesList = document.getElementById("gamesList");
+    const num = document.getElementById('item-number');
 
     function loadgames() {
       const items = JSON.parse(localStorage.getItem("games") || "[]");
@@ -95,6 +104,7 @@
         div.innerHTML = `<strong>${item.name}</strong><br/><em>${item.desc}</em><br/>⭐ ${item.rating}/5`;
         gamesList.appendChild(div);
       });
+      num.textContent = (items.length);
     }
 
     function addgames() {
