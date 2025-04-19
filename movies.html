@@ -69,6 +69,13 @@
     button:hover {
       background: #964f94;
     }
+    .item-number-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      padding-bottom: 40px;
+    }
   </style>
 </head>
 <body>
@@ -80,10 +87,12 @@
     <input type="number" id="movieRating" placeholder="Rating (1-5)" min="1" max="5" />
     <button onclick="addMovie()">Add Movie</button>
   </div>
+  <div class="item-number-container"><span id="item-number">1</span> / 112</div>
   <div class="items-list" id="movieList"></div>
 
   <script>
     const movieList = document.getElementById("movieList");
+    const num = document.getElementById('item-number');
 
     function loadMovies() {
       const items = JSON.parse(localStorage.getItem("movies") || "[]");
@@ -95,6 +104,7 @@
         div.innerHTML = `<strong>${item.name}</strong><br/><em>${item.desc}</em><br/>⭐ ${item.rating}/5`;
         movieList.appendChild(div);
       });
+      num.textContent = (items.length);
     }
 
     function addMovie() {
