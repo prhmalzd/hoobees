@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Musics - Parham's Hobby Garden</title>
+  <title>Musics - Hobby Garden</title>
   <style>
     :root {
       --primary: #f7d6e0;
@@ -69,10 +69,17 @@
     button:hover {
       background: #964f94;
     }
+    .item-number-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      padding-bottom: 40px;
+    }
   </style>
 </head>
 <body>
-  <h1>🎬 My Music List</h1>
+  <h1>🎧 My Music List</h1>
   <div class="form-container">
     <input type="text" id="musicname" placeholder="Music name" />
     <textarea id="musicDesc" placeholder="Description"></textarea>
@@ -80,10 +87,12 @@
     <input type="number" id="musicRating" placeholder="Rating (1-5)" min="1" max="5" />
     <button onclick="addmusic()">Add music</button>
   </div>
+  <div class="item-number-container"><span id="item-number">0</span></div>
   <div class="items-list" id="musicList"></div>
 
   <script>
     const musicList = document.getElementById("musicList");
+    const num = document.getElementById('item-number');
 
     function loadMusics() {
       const items = JSON.parse(localStorage.getItem("music") || "[]");
@@ -95,6 +104,7 @@
         div.innerHTML = `<strong>${item.name}</strong><br/><em>${item.desc}</em><br/>⭐ ${item.rating}/5`;
         musicList.appendChild(div);
       });
+      num.textContent = (items.length);
     }
 
     function addmusic() {
