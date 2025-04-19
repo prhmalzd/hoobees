@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Moods - Parham's Hobby Garden</title>
+  <title>Moods - Hobby Garden</title>
   <style>
     :root {
       --primary: #f7d6e0;
@@ -69,10 +69,17 @@
     button:hover {
       background: #964f94;
     }
+    .item-number-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      padding-bottom: 40px;
+    }
   </style>
 </head>
 <body>
-  <h1>🎬 My Mood List</h1>
+  <h1>🌙 My Mood List</h1>
   <div class="form-container">
     <input type="text" id="moodname" placeholder="Mood name" />
     <textarea id="moodDesc" placeholder="Description"></textarea>
@@ -80,10 +87,12 @@
     <input type="number" id="moodRating" placeholder="Rating (1-5)" min="1" max="5" />
     <button onclick="addmood()">Add mood</button>
   </div>
+  <div class="item-number-container"><span id="item-number">1</span></div>
   <div class="items-list" id="moodList"></div>
 
   <script>
     const moodList = document.getElementById("moodList");
+    const num = document.getElementById('item-number');
 
     function loadMood() {
       const items = JSON.parse(localStorage.getItem("mood") || "[]");
@@ -95,6 +104,7 @@
         div.innerHTML = `<strong>${item.name}</strong><br/><em>${item.desc}</em><br/>⭐ ${item.rating}/5`;
         moodList.appendChild(div);
       });
+      num.textContent = (items.length);
     }
 
     function addmood() {
